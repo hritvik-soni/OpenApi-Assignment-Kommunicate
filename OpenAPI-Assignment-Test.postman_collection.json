@@ -1,0 +1,39 @@
+{
+	"info": {
+		"_postman_id": "d8ee2f4e-053d-4463-bd55-ad435cd342cb",
+		"name": "OpenAPI-Assignment-Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27811054",
+		"_collection_link": "https://www.postman.com/lunar-module-architect-29363035/workspace/springboot/collection/27811054-d8ee2f4e-053d-4463-bd55-ad435cd342cb?action=share&source=collection_link&creator=27811054"
+	},
+	"item": [
+		{
+			"name": "chat",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"partial_text\": \"Give me a past tense sentence\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/complete_chat",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"complete_chat"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
