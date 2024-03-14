@@ -12,6 +12,7 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Base64;
 import java.util.List;
 import java.util.Objects;
 
@@ -19,10 +20,10 @@ import java.util.Objects;
 @Slf4j
 public class ChatService {
 
-    @Value("${openai.apiKey}")
+    @Value("${apiKey}")
     private String apiKey;
 
-    @Value("${openai.apiUrl}")
+    @Value("${apiUrl}")
     private String apiUrl;
 
     @Autowired
@@ -44,11 +45,13 @@ public class ChatService {
                 log.error("Error: Partial text is null or empty");
                 return ResponseEntity.ok(new ApiResponseDto("Error: Partial text is null or empty"));
             }
-
+            // decode base 64 key and set headers
+            byte[] decodedBytes = Base64.getDecoder().decode(apiKey);
+            String decodedKey = new String(decodedBytes);
             // Set headers
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
-            headers.set("Authorization", "Bearer " + apiKey);
+            headers.set("Authorization", "Bearer " + decodedKey);
             log.debug("Headers: {}", headers);
 
             // Prepare the message list for the external API request
